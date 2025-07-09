@@ -1,6 +1,6 @@
-package com.dux.cnweb.domain.model;
+package com.dux.cnweb.shared.domain.model;
 
-import com.dux.cnweb.domain.events.DomainEvent;
+import com.dux.cnweb.shared.domain.events.DomainEvent;
 
 import java.util.ArrayList;
 import java.util.Collections;
