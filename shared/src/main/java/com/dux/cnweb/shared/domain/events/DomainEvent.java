@@ -1,4 +1,4 @@
-package com.dux.cnweb.domain.events;
+package com.dux.cnweb.shared.domain.events;
 
 import lombok.Getter;
 

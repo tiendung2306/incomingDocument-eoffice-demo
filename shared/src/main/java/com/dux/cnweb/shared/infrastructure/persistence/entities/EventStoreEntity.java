@@ -1,4 +1,4 @@
-package com.dux.cnweb.infrastructure.persistence.entities;
+package com.dux.cnweb.shared.infrastructure.persistence.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,6 +12,7 @@ import java.time.Instant;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class EventStoreEntity {
     
     @Id

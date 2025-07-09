@@ -1,5 +1,6 @@
 rootProject.name = 'cnweb'
 
+include 'shared'
 include 'configuration'
 include 'product'
 include 'incomingDocument'

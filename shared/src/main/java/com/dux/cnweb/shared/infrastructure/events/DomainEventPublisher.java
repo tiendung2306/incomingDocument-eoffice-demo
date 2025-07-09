@@ -1,6 +1,6 @@
-package com.dux.cnweb.infrastructure.events;
+package com.dux.cnweb.shared.infrastructure.events;
 
-import com.dux.cnweb.domain.events.DomainEvent;
+import com.dux.cnweb.shared.domain.events.DomainEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;

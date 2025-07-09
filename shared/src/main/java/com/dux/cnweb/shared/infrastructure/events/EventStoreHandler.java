@@ -1,8 +1,8 @@
-package com.dux.cnweb.infrastructure.events;
+package com.dux.cnweb.shared.infrastructure.events;
 
-import com.dux.cnweb.domain.events.DomainEvent;
-import com.dux.cnweb.infrastructure.persistence.entities.EventStoreEntity;
-import com.dux.cnweb.infrastructure.persistence.repositories.EventStoreRepository;
+import com.dux.cnweb.shared.domain.events.DomainEvent;
+import com.dux.cnweb.shared.infrastructure.persistence.entities.EventStoreEntity;
+import com.dux.cnweb.shared.infrastructure.persistence.repositories.EventStoreRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Slf4j
 public class EventStoreHandler {
-
+    
     private final EventStoreRepository eventStoreRepository;
     private final ObjectMapper objectMapper;
 
@@ -40,13 +40,25 @@ public class EventStoreHandler {
     }
 
     private String extractAggregateId(DomainEvent event) {
-        // Extract aggregate ID based on event type
-        if (event instanceof com.dux.cnweb.domain.events.ProductCreatedEvent) {
-            return ((com.dux.cnweb.domain.events.ProductCreatedEvent) event).getProductId();
+        // Extract aggregate ID based on event type using reflection
+        try {
+            // Try to get productId field first
+            try {
+                java.lang.reflect.Method getProductId = event.getClass().getMethod("getProductId");
+                return (String) getProductId.invoke(event);
+            } catch (NoSuchMethodException e) {
+                // If productId doesn't exist, try userId
+                try {
+                    java.lang.reflect.Method getUserId = event.getClass().getMethod("getUserId");
+                    return (String) getUserId.invoke(event);
+                } catch (NoSuchMethodException ex) {
+                    // If neither exists, return unknown
+                    return "unknown";
+                }
+            }
+        } catch (Exception e) {
+            log.warn("Could not extract aggregate ID from event: {}", event.getClass().getSimpleName(), e);
+            return "unknown";
         }
-        if (event instanceof com.dux.cnweb.domain.events.ProductUpdatedEvent) {
-            return ((com.dux.cnweb.domain.events.ProductUpdatedEvent) event).getProductId();
-        }
-        return "unknown";
     }
 }

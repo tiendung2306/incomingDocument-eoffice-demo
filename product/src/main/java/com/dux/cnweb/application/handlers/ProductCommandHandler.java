@@ -5,7 +5,7 @@ import com.dux.cnweb.application.commands.UpdateProductCommand;
 import com.dux.cnweb.domain.model.aggregates.Product;
 import com.dux.cnweb.domain.model.entities.ProductId;
 import com.dux.cnweb.domain.repositories.ProductRepository;
-import com.dux.cnweb.infrastructure.events.DomainEventPublisher;
+import com.dux.cnweb.shared.infrastructure.events.DomainEventPublisher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
