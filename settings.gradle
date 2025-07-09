@@ -1,0 +1,5 @@
+rootProject.name = 'cnweb'
+
+include 'configuration'
+include 'product'
+include 'incomingDocument'
