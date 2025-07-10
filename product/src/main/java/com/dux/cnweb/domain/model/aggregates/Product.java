@@ -1,7 +1,7 @@
 // domain/model/aggregates/Product.java
 package com.dux.cnweb.domain.model.aggregates;
 
-import com.dux.cnweb.domain.model.AggregateRoot;
+import com.dux.cnweb.shared.domain.model.AggregateRoot;
 import com.dux.cnweb.domain.model.entities.ProductId;
 import com.dux.cnweb.domain.events.ProductCreatedEvent;
 import com.dux.cnweb.domain.events.ProductUpdatedEvent;

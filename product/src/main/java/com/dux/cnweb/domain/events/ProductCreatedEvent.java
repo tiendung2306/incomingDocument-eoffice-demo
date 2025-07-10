@@ -1,5 +1,6 @@
 package com.dux.cnweb.domain.events;
 
+import com.dux.cnweb.shared.domain.events.DomainEvent;
 import com.dux.cnweb.domain.model.valueobjects.Price;
 import com.dux.cnweb.domain.model.valueobjects.ProductName;
 import lombok.Getter;

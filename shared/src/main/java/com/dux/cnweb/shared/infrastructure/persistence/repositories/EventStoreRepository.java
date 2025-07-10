@@ -1,6 +1,6 @@
-package com.dux.cnweb.infrastructure.persistence.repositories;
+package com.dux.cnweb.shared.infrastructure.persistence.repositories;
 
-import com.dux.cnweb.infrastructure.persistence.entities.EventStoreEntity;
+import com.dux.cnweb.shared.infrastructure.persistence.entities.EventStoreEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.dux.cnweb.infrastructure.config;
+package com.dux.cnweb.shared.infrastructure.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class InfrastructureConfig {
-
+public class SharedInfrastructureConfig {
+    
     @Bean
     public ObjectMapper objectMapper() {
         ObjectMapper mapper = new ObjectMapper();
