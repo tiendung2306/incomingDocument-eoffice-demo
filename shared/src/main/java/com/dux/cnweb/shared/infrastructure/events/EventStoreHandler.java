@@ -27,7 +27,7 @@ public class EventStoreHandler {
                     extractAggregateId(event),
                     event.getClass().getSimpleName(),
                     eventData,
-                    event.getOccurredOn(),
+                    event.getOccurredAt(),
                     1L
             );
             

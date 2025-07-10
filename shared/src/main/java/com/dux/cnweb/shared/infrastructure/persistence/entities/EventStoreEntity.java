@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
 import java.time.Instant;
+import java.util.UUID;
 
 @Entity
 @Table(name = "event_store")
@@ -16,7 +17,7 @@ import java.time.Instant;
 public class EventStoreEntity {
     
     @Id
-    private String eventId;
+    private UUID eventId;
     
     @Column(nullable = false)
     private String aggregateId;

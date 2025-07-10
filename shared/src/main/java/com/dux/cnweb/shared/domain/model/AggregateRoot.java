@@ -13,6 +13,10 @@ public abstract class AggregateRoot {
         domainEvents.add(event);
     }
 
+    public void addMultipleEvents(List<DomainEvent> events) {
+        domainEvents.addAll(events);
+    }
+
     public List<DomainEvent> getDomainEvents() {
         return Collections.unmodifiableList(domainEvents);
     }
