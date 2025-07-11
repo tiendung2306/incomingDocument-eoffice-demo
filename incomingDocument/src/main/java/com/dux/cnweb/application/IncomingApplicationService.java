@@ -22,6 +22,6 @@ public class IncomingApplicationService {
     }
 
     public Document createDigitalDocument(CreateDigitalDocumentCommand command) {
-        return documentCommandHandler.createDigitalDocument(command);
+        return documentCommandHandler.createDigitalDoc(command);
     }
 }

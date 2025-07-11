@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dux.cnweb.application.commands.CreatePaperDocumentCommand;
+import com.dux.cnweb.application.commands.LogDocumentCommand;
 import com.dux.cnweb.application.commands.CreateDigitalDocumentCommand;
 import com.dux.cnweb.domain.model.Document;
 import com.dux.cnweb.domain.model.factories.DocumentFactory;
@@ -32,11 +33,15 @@ public class DocumentCommandHandler {
         return doc;
     }
 
-    public Document createDigitalDocument(CreateDigitalDocumentCommand cmd) {
+    public Document createDigitalDoc(CreateDigitalDocumentCommand cmd) {
         Document doc = factory.createDigitalDocument(cmd.creator(), cmd.docType(), cmd.emergencyLevel(),
                 cmd.referenceCode(), cmd.receiveDate(), cmd.dueDate(), cmd.dateOfIssue(), cmd.issuingAgency(),
                 cmd.signer(), cmd.signerPosition(), cmd.content(), cmd.note(), cmd.type());
         eventPublisher.publishEvents(doc.getDomainEvents());
         return doc;
     }
+
+    // public Document logDocument(LogDocumentCommand cmd) {
+    //     Document doc = 
+    // }
 }

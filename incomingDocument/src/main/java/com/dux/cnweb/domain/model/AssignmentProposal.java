@@ -17,17 +17,19 @@ import lombok.NoArgsConstructor;
 @Getter @Setter @NoArgsConstructor
 public class AssignmentProposal extends AggregateRoot{
     private UUID id;
+    private UUID documentID;
     private List<AssignmentDraft> assignments; 
     private ProposalState state;
 
-    public AssignmentProposal(UUID userId, List<AssignmentDraft> assignments) {
+    public AssignmentProposal(UUID userId, UUID documentID, List<AssignmentDraft> assignments) {
         this.id = UUID.randomUUID();
+        this.documentID = documentID;
         this.assignments = assignments;
-        this.addDomainEvent(new DistributionProposed(id, userId, assignments));
+        this.addDomainEvent(new DistributionProposed(id, userId, documentID, assignments));
     }
 
     public void approve(UUID userId) {
         this.setState(this.state.approve());
-        this.addDomainEvent(new DistributionApproved(id, userId));
+        this.addDomainEvent(new DistributionApproved(id, userId, documentID));
     }
 }

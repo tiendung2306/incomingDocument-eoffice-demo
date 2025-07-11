@@ -12,12 +12,14 @@ import lombok.Getter;
 public class DistributionProposed extends DomainEvent{
     private final UUID proposalId;
     private final UUID userId;
+    private final UUID documentId; 
     private final List<AssignmentDraft> assignments;
-    
-    public DistributionProposed(UUID proposalId, UUID userId, List<AssignmentDraft> assignments) {
+
+    public DistributionProposed(UUID proposalId, UUID userId, UUID documentId, List<AssignmentDraft> assignments) {
         super();
         this.proposalId = proposalId;
         this.userId = userId;
+        this.documentId = documentId;
         this.assignments = assignments;
     }
 }

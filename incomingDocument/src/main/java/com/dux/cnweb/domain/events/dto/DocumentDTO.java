@@ -9,22 +9,22 @@ import lombok.Getter;
 
 @Getter
 public class DocumentDTO {
-    private final UUID id;
-    private final UUID creator;
-    private final String notebook;
-    private final String docType;
-    private final int receivedDocumentNumber;
-    private final String emergencyLevel;
-    private final String referenceCode;
-    private final Date receiveDate;
-    private final Date dueDate;
-    private final Date dateOfIssue;
-    private final String issuingAgency;
-    private final String signer;
-    private final String signerPosition;
-    private final String content;
-    private final String note;
-    private final String receiveType;
+    private UUID id;
+    private UUID creator;
+    private String notebook;
+    private String docType;
+    private int receivedDocumentNumber;
+    private String emergencyLevel;
+    private String referenceCode;
+    private Date receiveDate;
+    private Date dueDate;
+    private Date dateOfIssue;
+    private String issuingAgency;
+    private String signer;
+    private String signerPosition;
+    private String content;
+    private String note;
+    private String receiveType;
 
     public DocumentDTO(Document doc) {
         this.id = doc.getId();
@@ -44,5 +44,9 @@ public class DocumentDTO {
         this.note = doc.getDocContent().getNote();
         this.receiveType = doc.getReceiveType().toString();
     }
+
+    // public DocumentDTO() {
+
+    // }
     
 }
