@@ -7,11 +7,11 @@ import java.util.UUID;
 
 @Getter
 public abstract class DomainEvent {
-    private final String eventId;
-    private final Instant occurredOn;
+    private final UUID eventId;
+    private final Instant occurredAt;
 
     protected DomainEvent() {
-        this.eventId = UUID.randomUUID().toString();
-        this.occurredOn = Instant.now();
+        this.eventId = UUID.randomUUID();
+        this.occurredAt = Instant.now();
     }
 }

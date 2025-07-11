@@ -31,9 +31,10 @@ public class EventStoreHandler {
                     extractAggregateId(event),
                     event.getClass().getSimpleName(),
                     eventData,
-                    event.getOccurredOn(),
-                    1L);
-
+                    event.getOccurredAt(),
+                    1L
+            );
+            
             eventStoreRepository.save(entity);
             log.info("Stored event: {} for aggregate: {}", event.getClass().getSimpleName(), extractAggregateId(event));
 
