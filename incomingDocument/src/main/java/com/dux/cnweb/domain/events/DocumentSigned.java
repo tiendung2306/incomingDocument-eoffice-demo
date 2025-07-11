@@ -8,10 +8,10 @@ import lombok.Getter;
 
 @Getter
 public class DocumentSigned extends DomainEvent{
-    private final UUID docId;
+    private final UUID documentId ;
 
-    public DocumentSigned(UUID docId) {
+    public DocumentSigned(UUID documentId ) {
         super();
-        this.docId = docId;
+        this.documentId  = documentId ;
     }
 }

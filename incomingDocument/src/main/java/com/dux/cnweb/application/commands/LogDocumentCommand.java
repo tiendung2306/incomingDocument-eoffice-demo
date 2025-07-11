@@ -1,5 +1,7 @@
 package com.dux.cnweb.application.commands;
 
-public class LogDocumentCommand {
+import java.util.UUID;
+
+public record LogDocumentCommand(UUID docId, String notebook) {
     
 }

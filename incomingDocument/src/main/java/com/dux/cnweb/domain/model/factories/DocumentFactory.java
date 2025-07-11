@@ -37,7 +37,7 @@ public class DocumentFactory {
         newDoc.setDueDate(dueDate);
         newDoc.setDateOfIssue(dateOfIssue);
         newDoc.setIssuingAgency(issuingAgency);
-        newDoc.setSignerInfo(SignerInfo.of(signer, signerPosition));
+        newDoc.setSignerInfo(new SignerInfo(signer, signerPosition));
         newDoc.setDocContent(DocContent.of(content, note));
         newDoc.setReceiveType(ReceiveType.PAPER);
         newDoc.addMultipleEvents(List.of(new DocumentCreated(newDoc), new DocumentLogged(newDoc.getId(), notebook)));
@@ -58,7 +58,7 @@ public class DocumentFactory {
         newDoc.setDueDate(dueDate);
         newDoc.setDateOfIssue(dateOfIssue);
         newDoc.setIssuingAgency(issuingAgency);
-        newDoc.setSignerInfo(SignerInfo.of(signer, signerPosition));
+        newDoc.setSignerInfo(new SignerInfo(signer, signerPosition));
         newDoc.setDocContent(DocContent.of(content, note));
         newDoc.setReceiveType(type == "external" ? ReceiveType.EXTERNAL_DIGITAL : ReceiveType.INTERNAL_DIGITAL);
         newDoc.addMultipleEvents(List.of(new DocumentCreated(newDoc)));

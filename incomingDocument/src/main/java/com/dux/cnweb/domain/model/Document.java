@@ -1,20 +1,24 @@
 package com.dux.cnweb.domain.model;
 
+import com.dux.cnweb.domain.events.DocumentCreated;
 import com.dux.cnweb.domain.events.DocumentLogged;
 import com.dux.cnweb.domain.events.DocumentRecalled;
 import com.dux.cnweb.domain.events.DocumentSigned;
+import com.dux.cnweb.domain.events.dto.DocumentDTO;
 import com.dux.cnweb.domain.model.exceptions.InvalidReceiveTypeException;
+import com.dux.cnweb.domain.model.factories.DocumentFactory;
 import com.dux.cnweb.domain.model.valueObjects.DocContent;
 import com.dux.cnweb.domain.model.valueObjects.DocType;
 import com.dux.cnweb.domain.model.valueObjects.ReceivedDocumentNumber;
 import com.dux.cnweb.domain.model.valueObjects.SignerInfo;
 import com.dux.cnweb.shared.domain.model.AggregateRoot;
-
-import jakarta.annotation.Nullable;
-
 import com.dux.cnweb.domain.model.valueObjects.ReceiveType;
 import com.dux.cnweb.domain.model.valueObjects.EmergencyLevel;
 import com.dux.cnweb.domain.model.valueObjects.ReceiveState;
+
+import com.dux.cnweb.shared.domain.events.DomainEvent;
+
+import jakarta.annotation.Nullable;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,10 +27,13 @@ import jakarta.annotation.Nullable;
 
 import java.util.Date;
 import java.util.UUID;
+import java.util.Map;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.HashMap;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class Document extends AggregateRoot {
     private UUID id;
     private UUID creator;
@@ -44,15 +51,36 @@ public class Document extends AggregateRoot {
     private ReceiveType receiveType;
     private ReceiveState receiveState;
 
-    public Document acceptDocument() {
-        this.setReceiveState(this.receiveState.accept());
-        return this;
+    static final Map<Class<? extends DomainEvent>, Consumer<DomainEvent>> handlers = new HashMap<>();
+
+    public Document() {
+        handlers.put(DocumentCreated.class, e -> apply((DocumentCreated) e));
+        handlers.put(DocumentLogged.class, e -> apply((DocumentLogged) e));
     }
 
-    public void rejectDocument() {
-        this.setReceiveState(this.receiveState.reject());
+    public void rehydrate(List<DomainEvent> events) {
+        for (DomainEvent event : events) {
+            this.apply(event);
+        }
     }
-    // add events later
+
+    private void apply(DomainEvent event) {
+        Consumer<DomainEvent> handler = handlers.get(event.getClass());
+        if (handler != null) {
+            handler.accept(event);
+        } else {
+            throw new IllegalArgumentException("No apply() method for event: " + event.getClass());
+        }
+    }
+
+    // private void apply(DocumentCreated event) {
+    //     DocumentDTO dto = event.getPayload();
+        
+    // }
+
+    // private void apply(DocumentLogged event) {
+    //     this.notebook = event.getNotebook();
+    // }
 
     public Document logDocument(String notebook) {
         this.setNotebook(notebook);

@@ -10,12 +10,12 @@ import lombok.Getter;
 
 @Getter
 public class DocumentCreated extends DomainEvent {
-    private final UUID docId;
+    private final UUID documentId;
     private final DocumentDTO payload;
 
     public DocumentCreated(Document doc) {
         super();
-        this.docId = doc.getId();
+        this.documentId = doc.getId();
         this.payload = new DocumentDTO(doc);
     }
 }

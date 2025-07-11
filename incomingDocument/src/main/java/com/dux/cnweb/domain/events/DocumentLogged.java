@@ -8,12 +8,12 @@ import lombok.Getter;
 
 @Getter
 public class DocumentLogged extends DomainEvent{
-    private final UUID docId;
+    private final UUID documentId ;
     private final String payload;
 
-    public DocumentLogged(UUID docId, String notebook) {
+    public DocumentLogged(UUID documentId , String notebook) {
         super();
-        this.docId = docId;
+        this.documentId  = documentId ;
         this.payload = notebook;
     }
 }

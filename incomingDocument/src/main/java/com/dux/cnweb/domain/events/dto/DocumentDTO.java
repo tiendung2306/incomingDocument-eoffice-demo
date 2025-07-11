@@ -44,5 +44,5 @@ public class DocumentDTO {
         this.note = doc.getDocContent().getNote();
         this.receiveType = doc.getReceiveType().toString();
     }
-
+    
 }
